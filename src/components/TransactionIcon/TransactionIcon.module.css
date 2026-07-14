@@ -1,0 +1,30 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-pill);
+  flex-shrink: 0;
+}
+
+.train,
+.bus {
+  background: var(--color-transit-tint);
+  color: var(--color-transit-icon);
+}
+
+.shopping {
+  background: var(--color-shopping-tint);
+  color: var(--color-shopping-icon);
+}
+
+.charge {
+  background: var(--color-accent-tint);
+  color: var(--color-primary-dark);
+}
+
+.adjustment {
+  background: var(--color-adjustment-tint);
+  color: var(--color-adjustment-icon);
+}

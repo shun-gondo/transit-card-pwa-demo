@@ -1,0 +1,60 @@
+:root {
+  /* Color: 実在の交通系ICカードの配色を複製せず、独自のティール寄りグリーンを採用 */
+  --color-bg: #f3f6f5;
+  --color-surface: #ffffff;
+  --color-primary: #1b7a5e;
+  --color-primary-dark: #145c47;
+  --color-primary-tint: #eaf6f1;
+  --color-accent-tint: #bfe3d5;
+  --color-text-primary: #16211d;
+  --color-text-secondary: #5b6b65;
+  --color-text-on-primary: #f4fbf8;
+  --color-border: #e1e8e5;
+  --color-danger: #b3261e;
+  --color-danger-tint: #fdecea;
+  --color-notice-bg: #eef2f0;
+  --color-notice-border: #1b7a5e;
+
+  --color-amount-debit: #2a332f;
+  --color-amount-credit: #1b7a5e;
+
+  --color-shopping-tint: #f4ede0;
+  --color-shopping-icon: #8a6b2f;
+  --color-transit-tint: var(--color-primary-tint);
+  --color-transit-icon: var(--color-primary);
+  --color-adjustment-tint: #eceeed;
+  --color-adjustment-icon: #5b6b65;
+
+  --font-family-base:
+    -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic',
+    Meiryo, system-ui, sans-serif;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 32px;
+  --space-8: 40px;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+
+  --shadow-card: 0 8px 24px rgba(15, 31, 26, 0.12);
+  --shadow-modal: 0 16px 40px rgba(15, 31, 26, 0.24);
+
+  --app-max-width: 440px;
+  --tap-target-min: 44px;
+
+  --motion-duration: 180ms;
+  --motion-easing: ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-duration: 0ms;
+  }
+}

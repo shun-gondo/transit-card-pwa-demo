@@ -1,0 +1,44 @@
+.notice {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  background: var(--color-notice-bg);
+  border-left: 4px solid var(--color-notice-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3);
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  color: var(--color-primary-dark);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.text {
+  flex: 1;
+  font-size: 0.8rem;
+  color: var(--color-text-primary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.closeButton {
+  width: var(--tap-target-min);
+  height: var(--tap-target-min);
+  margin: calc((var(--tap-target-min) - 20px) / -2) calc((var(--tap-target-min) - 20px) / -2) 0 0;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  border-radius: var(--radius-pill);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+
+.closeButton:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
