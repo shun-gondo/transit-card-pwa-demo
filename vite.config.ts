@@ -17,7 +17,7 @@ export default defineConfig({
       includeAssets: ['favicon.svg'],
       manifest: {
         id: base,
-        name: 'Transit Pass Demo',
+        name: 'Suica一覧',
         short_name: 'Transit Pass',
         description:
           '交通系ICカードアプリの操作体験を参考にしたフロントエンド学習用デモPWA（実在サービスとは無関係）',

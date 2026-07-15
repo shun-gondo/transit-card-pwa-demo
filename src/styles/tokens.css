@@ -1,8 +1,8 @@
 :root {
   /* Color: 実在の交通系ICカードの配色を複製せず、独自のライムグリーンを採用 */
-  --color-bg: #f3f6f5;
+  --color-bg: #ffffff;
   --color-surface: #ffffff;
-  --color-primary: #7fb447;
+  --color-primary: #67b72d;
   --color-primary-dark: #4c6c2b;
   --color-primary-tint: #f2f8ed;
   --color-accent-tint: #dbeacb;

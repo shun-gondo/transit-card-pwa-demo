@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { Header } from '../Header/Header'
+import { BottomNav } from '../BottomNav/BottomNav'
 import styles from './AppLayout.module.css'
 
 interface AppLayoutProps {
@@ -13,6 +14,7 @@ export function AppLayout({ children }: AppLayoutProps) {
         <Header />
         <main className={styles.main}>{children}</main>
       </div>
+      <BottomNav />
     </div>
   )
 }

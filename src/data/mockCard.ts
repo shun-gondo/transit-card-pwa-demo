@@ -7,5 +7,5 @@ const latest = mockTransactions[0]
 export const initialCardState: CardState = {
   balance: latest.balanceAfter,
   lastUpdatedAt: latest.occurredAt,
-  holderAlias: 'DEMO USER',
+  holderAlias: '通勤用',
 }

@@ -5,7 +5,7 @@
   gap: var(--space-2);
   min-height: var(--tap-target-min);
   padding: 0 var(--space-4);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
   border: none;
   font-size: 0.95rem;
   font-weight: 600;
@@ -13,7 +13,7 @@
   transition:
     background-color var(--motion-duration) var(--motion-easing),
     transform var(--motion-duration) var(--motion-easing);
-  flex: 1;
+  width: 100%;
 }
 
 .button:active {
@@ -42,11 +42,6 @@
 
 .secondary:hover:not(:disabled) {
   background: var(--color-accent-tint);
-}
-
-.row {
-  display: flex;
-  gap: var(--space-3);
 }
 
 .spinner {

@@ -4,39 +4,48 @@ interface TransitCardProps {
   holderAlias?: string
 }
 
-/**
- * オリジナルデザインのICカード表現。実在カードの券面は複製せず、
- * 独自のチップ＋タップ波紋モチーフのみで構成する。データには非依存。
- */
-export function TransitCard({ holderAlias = 'DEMO USER' }: TransitCardProps) {
+function BrandGlyph() {
   return (
-    <div className={styles.card} role="img" aria-label="オリジナルデザインの交通系ICカード（デモ）">
-      <div className={styles.topRow}>
-        <span className={styles.brandLabel}>TRANSIT PASS</span>
-        <div className={styles.chip} aria-hidden="true" />
-      </div>
-      <div>
-        <svg className={styles.waveMark} viewBox="0 0 100 100" aria-hidden="true">
-          <path
-            d="M40 55 A18 18 0 0 1 58 73"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="7"
-            strokeLinecap="round"
-          />
-          <path
-            d="M40 40 A33 33 0 0 1 73 73"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="7"
-            strokeLinecap="round"
-            opacity="0.6"
-          />
-        </svg>
-      </div>
-      <div>
-        <div className={styles.decorativeLine} aria-hidden="true" />
+    <svg className={styles.brandGlyph} viewBox="0 0 512 512" role="img" aria-hidden="true">
+      <rect width="512" height="512" rx="96" fill="currentColor" />
+      <rect x="126" y="176" width="260" height="168" rx="26" fill="var(--color-primary)" />
+      <rect x="156" y="206" width="64" height="46" rx="9" fill="currentColor" />
+      <path
+        d="M 300 236 A 40 40 0 0 1 340 276"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="12"
+        strokeLinecap="round"
+      />
+      <path
+        d="M 300 208 A 68 68 0 0 1 368 276"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="12"
+        strokeLinecap="round"
+        opacity="0.55"
+      />
+    </svg>
+  )
+}
+
+export function TransitCard({ holderAlias = '通勤用' }: TransitCardProps) {
+  return (
+    <div className={styles.frame}>
+      <div
+        className={styles.card}
+        role="img"
+        aria-label="オリジナルデザインの交通系ICカード（デモ）"
+      >
+        <div className={styles.greenPanel} aria-hidden="true" />
+
+        <BrandGlyph />
+
         <p className={styles.holder}>{holderAlias}</p>
+
+        <div className={styles.wordmark} aria-hidden="true">
+          Suica
+        </div>
       </div>
     </div>
   )
