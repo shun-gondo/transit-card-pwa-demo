@@ -1,11 +1,11 @@
 :root {
-  /* Color: 実在の交通系ICカードの配色を複製せず、独自のティール寄りグリーンを採用 */
+  /* Color: 実在の交通系ICカードの配色を複製せず、独自のライムグリーンを採用 */
   --color-bg: #f3f6f5;
   --color-surface: #ffffff;
-  --color-primary: #1b7a5e;
-  --color-primary-dark: #145c47;
-  --color-primary-tint: #eaf6f1;
-  --color-accent-tint: #bfe3d5;
+  --color-primary: #7fb447;
+  --color-primary-dark: #4c6c2b;
+  --color-primary-tint: #f2f8ed;
+  --color-accent-tint: #dbeacb;
   --color-text-primary: #16211d;
   --color-text-secondary: #5b6b65;
   --color-text-on-primary: #f4fbf8;
@@ -13,10 +13,10 @@
   --color-danger: #b3261e;
   --color-danger-tint: #fdecea;
   --color-notice-bg: #eef2f0;
-  --color-notice-border: #1b7a5e;
+  --color-notice-border: #7fb447;
 
   --color-amount-debit: #2a332f;
-  --color-amount-credit: #1b7a5e;
+  --color-amount-credit: #7fb447;
 
   --color-shopping-tint: #f4ede0;
   --color-shopping-icon: #8a6b2f;
