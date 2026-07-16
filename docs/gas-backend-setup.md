@@ -268,6 +268,21 @@ VITE_GAS_SHARED_SECRET=（手順3で設定したSHARED_SECRETと同じ値）
 
 設定後、`npm run dev` で起動すればホーム画面・履歴画面ともにGAS経由のデータが表示されます。取得に失敗した場合は履歴画面にエラーメッセージが表示されます（URL・トークンの設定漏れ、デプロイのアクセス権限設定などを確認してください）。
 
+### GitHub Pagesにデプロイする場合
+
+`.env.local` はGit管理対象外のローカルファイルなので、GitHub Actions上のビルドには存在せず、そのままだとGitHub Pages版は「GASのエンドポイントURL・共有トークンが未設定です」というエラーになります。
+
+GitHub Actions（`.github/workflows/ci-deploy.yml`）のBuildステップは、リポジトリの **Settings > Secrets and variables > Actions** に登録した以下の2つのSecretを読み込むよう設定済みです。ここに`.env.local`と同じ値を登録してください。
+
+| Secret名 | 値 |
+|---|---|
+| `VITE_GAS_ENDPOINT_URL` | 手順5でコピーしたウェブアプリのURL |
+| `VITE_GAS_SHARED_SECRET` | 手順3で設定したSHARED_SECRETと同じ値 |
+
+登録後、`main`へのpush（またはActionsタブから`workflow_dispatch`で手動実行）で再ビルド・再デプロイされれば反映されます。
+
+> **重要**: Viteの`VITE_`プレフィックス環境変数はビルド時にJSバンドルへそのまま埋め込まれます。GitHub Pagesは静的サイトなので、公開後はブラウザのdevtools等で誰でもこのURLとトークンを読み取れます。Secretsに登録するのはリポジトリやワークフローログに値を残さないためであり、配信後の「真の秘匿」にはなりません。あくまで学習用デモの簡易的な不正アクセス抑止と割り切ってください。
+
 ## 動作確認のポイント
 
 - Apps Script エディタから `generateDailyTransactions` を直接実行すると、平日であればすぐに2件（行き・帰り）、必要なら+1件（チャージ）がシートに追加されます。土日に手動実行した場合は何も起きません（意図した挙動です）。
