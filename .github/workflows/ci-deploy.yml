@@ -42,6 +42,9 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          VITE_GAS_ENDPOINT_URL: ${{ secrets.VITE_GAS_ENDPOINT_URL }}
+          VITE_GAS_SHARED_SECRET: ${{ secrets.VITE_GAS_SHARED_SECRET }}
 
       - name: Upload build artifact
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'

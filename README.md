@@ -37,7 +37,7 @@ React / TypeScript / Vite / React Router / PWA（Web App Manifest・Service Work
 - サービス名・ロゴ・カードデザイン・アイコンはすべてオリジナルです。
 - 実在するICカードのサービス名、鉄道会社の名称・ロゴ、公式アプリの画像素材、Apple Payのロゴ等は一切使用していません。
 - 画面内に表示される駅名・店舗名（例: 北町駅、中央公園駅、Transit Cafe、Demo Market）はすべて架空のものです。
-- 表示されるデータはすべてローカルのモックデータであり、実際の決済・入金・通信は一切行われません。
+- 表示されるデータはすべて学習用の架空データであり、実際の決済・入金は一切行われません。取引データ自体は自前のGoogle Apps Script（GAS）バックエンド経由で取得しており、実在の決済・交通事業者のシステムとは無関係です（[docs/gas-backend-setup.md](docs/gas-backend-setup.md)参照）。
 
 ## 使用技術
 
@@ -58,7 +58,7 @@ React / TypeScript / Vite / React Router / PWA（Web App Manifest・Service Work
 ## 主要機能
 
 - 残高表示（`Intl.NumberFormat`による日本円表記）と最終更新日時の表示
-- 残高更新（外部通信は行わず、ローカルモックデータの再読込・更新時刻の更新のみ）
+- 残高更新（GAS Web Appへ再fetchし、最新の取引データで残高・最終更新日時を更新）
 - 入金ボタン（実際の決済は行われず、デモである旨のモーダルを表示）
 - 最近の利用履歴3件の表示とすべての履歴への導線
 - 日付ごとにグルーピングされた利用履歴一覧（鉄道・バス・買い物・チャージ・取消/調整を視覚的に区別）
@@ -88,7 +88,7 @@ transit-card-pwa-demo/
 │   ├── pages/                         # HomePage / HistoryPage / NotFoundPage
 │   ├── context/                       # 残高状態を保持するCardContext
 │   ├── hooks/                         # useCard, useInstallPrompt など
-│   ├── data/                          # モックデータ（mockTransactions.ts, mockCard.ts）
+│   ├── data/                          # transactionsApi.ts（GAS Web App取得）、mockTransactions.ts（GASシード参照用）
 │   ├── types/                         # Transaction, CardState などの型定義
 │   └── utils/                         # 通貨・日付フォーマットユーティリティ
 ├── vite.config.ts
@@ -138,6 +138,15 @@ npm run preview       # ビルド成果物をローカルで確認
 
 初回のみ、リポジトリの **Settings > Pages > Build and deployment > Source** を **GitHub Actions** に設定してください。
 
+取引データの取得先（GAS Web App）に接続するため、ビルド時にVite環境変数が必要です。ローカルの`.env.local`はビルド環境（GitHub Actions）には存在しないので、代わりにリポジトリの **Settings > Secrets and variables > Actions > New repository secret** で以下の2つを登録してください（`.github/workflows/ci-deploy.yml`のBuildステップが読み込みます）。
+
+| Secret名                 | 値                                             |
+| ------------------------ | ---------------------------------------------- |
+| `VITE_GAS_ENDPOINT_URL`  | `.env.local`の`VITE_GAS_ENDPOINT_URL`と同じ値  |
+| `VITE_GAS_SHARED_SECRET` | `.env.local`の`VITE_GAS_SHARED_SECRET`と同じ値 |
+
+> 注意: これらはビルド時に静的サイトのJSバンドルへそのまま埋め込まれます。GitHub Actions Secretsに登録するのはリポジトリ・ワークフローログに値を残さないためであり、公開後のサイトを見る人からは（devtoolsで）値が読める状態になります。真に秘匿すべき情報（本番の決済APIキー等）には使わないでください。
+
 ## GitHub Actionsについて
 
 `.github/workflows/ci-deploy.yml` に2つのジョブを定義しています。
@@ -179,7 +188,7 @@ npm run preview       # ビルド成果物をローカルで確認
 ## 制約事項
 
 - 実在の交通系ICカード・決済システム・鉄道会社のシステムとは一切接続していません。
-- 表示データはすべてローカルのモックデータであり、サーバーサイド・データベースは存在しません。
+- 取引データは自前のGoogle Apps Script（GAS）+ Googleスプレッドシートを簡易バックエンドとして配信しています。実際の決済・入金処理を行うサーバーサイドではありません（詳細は[docs/gas-backend-setup.md](docs/gas-backend-setup.md)）。
 - テストフレームワークは意図的に導入していません（学習目的のスコープ外としています）。
 - 依存関係の一部（`vite-plugin-pwa`が利用する`workbox-build`の推移的依存）に、`npm install`時点で非推奨(deprecated)警告が出る場合がありますが、`npm audit`では脆弱性0件を確認しています。これは第三者パッケージの内部依存によるもので、本プロジェクトの依存関係選定では最新の安定版を採用しています。
 
