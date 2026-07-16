@@ -1,32 +1,17 @@
 import styles from './TransitCard.module.css'
+import logo from '../../assets/suica-logo.png'
+import penguin from '../../assets/penguin.png'
 
 interface TransitCardProps {
   holderAlias?: string
 }
 
 function BrandGlyph() {
-  return (
-    <svg className={styles.brandGlyph} viewBox="0 0 512 512" role="img" aria-hidden="true">
-      <rect width="512" height="512" rx="96" fill="currentColor" />
-      <rect x="126" y="176" width="260" height="168" rx="26" fill="var(--color-primary)" />
-      <rect x="156" y="206" width="64" height="46" rx="9" fill="currentColor" />
-      <path
-        d="M 300 236 A 40 40 0 0 1 340 276"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="12"
-        strokeLinecap="round"
-      />
-      <path
-        d="M 300 208 A 68 68 0 0 1 368 276"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="12"
-        strokeLinecap="round"
-        opacity="0.55"
-      />
-    </svg>
-  )
+  return <img className={styles.brandGlyph} src={logo} alt="ロゴ" />
+}
+
+function BrandPenguin() {
+  return <img className={styles.brandPenguin} src={penguin} alt="ペンギン" />
 }
 
 export function TransitCard({ holderAlias = '通勤用' }: TransitCardProps) {
@@ -46,6 +31,7 @@ export function TransitCard({ holderAlias = '通勤用' }: TransitCardProps) {
         <div className={styles.wordmark} aria-hidden="true">
           Suica
         </div>
+        <BrandPenguin />
       </div>
     </div>
   )
